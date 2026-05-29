@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邱湘婷 | Sting Chiou - 個人品牌與研究展示</title>
+    <style>
+        /* --- 顏色與變數定義 (莫蘭迪色系) --- */
+        :root {
+            --bg-primary: #F4F3EF;      /* 溫潤米白 */
+            --bg-secondary: #E6E4DE;    /* 淺灰泥色 */
+            --text-primary: #3A403F;    /* 深灰綠（文字） */
+            --text-secondary: #707771;  /* 煙燻灰（次要文字） */
+            --accent: #8A9A86;          /* 鼠尾草綠（點綴色） */
+            --accent-hover: #6E7E6B;    /* 深鼠尾草綠 */
+            --card-bg: #FFFFFF;         /* 純白卡片 */
+            --transition: all 0.3s ease;
+        }
+
+        /* --- 基本樣式重設 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, "Microsoft JhengHei";
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- 導覽列 Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(244, 243, 239, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* 手機版選單按鈕 */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        /* --- 首頁 Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            /* 背景圖檔名使用符合需求的 banner.png 格式 */
+            background: linear-gradient(rgba(244, 243, 239, 0.85), rgba(244, 243, 239, 0.85)), url('banner.png') no-repeat center center/cover;
+            padding-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .avatar-wrapper {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 4px solid var(--card-bg);
+            background-color: var(--bg-secondary);
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            padding: 0 20px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--accent);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(138, 154, 134, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(138, 154, 134, 0.4);
+        }
+
+        /* --- 關於我 About --- */
+        #about {
+            background-color: var(--card-bg);
+        }
+
+        .about-text {
+            max-width: 750px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-top: 30px;
+        }
+
+        /* --- 技能與研究領域 Skills & Research --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg);
+            padding: 35px 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--accent);
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- 作品集 Portfolio --- */
+        #portfolio {
+            background-color: var(--card-bg);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: var(--transition);
+        }
+
+        .portfolio-loading {
+            height: 250px;
+            background-color: var(--bg-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            border: 2px dashed #C3C0B7;
+            margin: 20px;
+            border-radius: 6px;
+        }
+        
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(138, 154, 134, 0.2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- 常用連結與聯絡方式 Links & Contact --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info h3, .links-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .contact-info h3::before, .links-info h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 4px;
+            height: 18px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .contact-list li {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .contact-list span {
+            color: var(--text-secondary);
+            display: inline-block;
+            width: 80px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            background-color: var(--card-bg);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+            font-weight: 500;
+        }
+
+        .social-link::before {
+            content: '💻';
+            margin-right: 10px;
+        }
+
+        .social-link:hover {
+            background-color: var(--accent);
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        /* --- 頁尾 Footer --- */
+        footer {
+            background-color: var(--text-primary);
+            color: var(--bg-primary);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* --- 響應式斷點設計 RWD --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                gap: 40px;
+                transition: var(--transition);
+                box-shadow: 0 10px 10px rgba(0,0,0,0.02);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            #hero {
+                height: auto;
+                padding: 140px 0 100px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">TING CHIOU.</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#skills">技術與研究</a></li>
+                <li><a href="#portfolio">作品專案</a></li>
+                <li><a href="#contact">聯絡通訊</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="avatar-wrapper">
+                <img src="avatar.png" alt="邱湘婷" onerror="this.src='https://via.placeholder.com/150/E6E4DE/3A403F?text=Sting'">
+            </div>
+            <h1>邱湘婷</h1>
+            <p class="hero-subtitle">
+                自學但還沒成材的研究生？<br>
+                在實驗室這個結構性行政黑洞裡，現在是別人口中的<strong>邱助理</strong>。
+            </p>
+            <a href="#about" class="btn">探索我的研究世界</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">關於我</h2>
+            <div class="about-text">
+                <p>「人類的一小步是我的一大步。」</p>
+                <p>我不著迷於一蹴可幾的跨越，而是享受踩實每一個前進的腳印。我喜歡進行深度研究，並將那些看似抽象的理論轉化為能夠「解決真實世界問題」的實體方案。</p>
+                <p class="quote">正在全力前往自學成材的路上。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">專業技術與研究</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🧠</div>
+                    <h3>AI 與前沿研究</h3>
+                    <p>專注於 LLM 本地部屬、RAG（檢索增強生成）系統架構建置，以及軟硬體融合的 Edge AI 應用落地。</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>韌體與周邊驅動裝置開發</h3>
+                    <p>熟練掌握多晶片系統開發，包含 STM32 (U, F, G系列)、Infineon PSoC 系列及 Microchip、ESP32、Arduino 系列晶片與周邊驅動開發，熟悉主流通訊協議。</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h3>軟硬體整合與 App 開發</h3>
+                    <p>打破軟硬體邊界，具備將底層硬體訊號與上層端點（如 App、雲端介面）無縫串接的實戰能力。</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>3DP 快速原型實作</h3>
+                    <p>結合 3D 列印技術（3DP），能獨立完成從機構外殼原型、硬體電路到軟體控制的完整閉環驗證。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">精彩作品</h2>
+            <div class="portfolio-loading">
+                <div class="spinner"></div>
+                <p>努力產出中 (Researching & Loading...)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">與我聯絡</h2>
+            <div class="contact-wrapper">
+                
+                <div class="contact-info">
+                    <h3>Contact</h3>
+                    <ul class="contact-list">
+                        <li><span>Email</span> <a href="mailto:F114152121@nkust.edu.tw" style="text-decoration: underline;">F114152121@nkust.edu.tw</a></li>
+                        <li><span>Location</span> 台灣, 高雄</li>
+                    </ul>
+                </div>
+
+                <div class="links-info">
+                    <h3>Code & Repository</h3>
+                    <div class="links-grid">
+                        <a href="https://github.com/stingch?tab=repositories" target="_blank" class="social-link">GitHub 儲存庫</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 邱湘婷 Sting Chiou. 保持自學，在學術的黑洞中持續掙扎。</p>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
